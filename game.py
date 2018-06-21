@@ -11,8 +11,8 @@ class Game:
         self.sense.rotation = 180
         self.sense.low_light = True
         self.field = 8
-        self.snake = Snake(0, 0, 1, self.field, (0, 133, 0))
-        self.sensimate = SensiMate(self.field)
+        self.snake = Snake(0, 0, 1, self.field, (0, 133, 0), self.sense)
+        self.sensimate = SensiMate(self.field, self.sense)
         self.start()
 
     def start(self):

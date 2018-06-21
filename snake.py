@@ -1,11 +1,10 @@
-from sense_hat import SenseHat
 from apple import Apple
 
 
 class Snake:
-    def __init__(self, x, y, length, field, rgb):
-        self.sense = SenseHat()
-        self.apple = Apple(field, (133, 0, 0))
+    def __init__(self, x, y, length, field, rgb, sense):
+        self.sense = sense
+        self.apple = Apple(field, (133, 0, 0), sense)
         self.x = x + length
         self.y = y + length
         self.length = length

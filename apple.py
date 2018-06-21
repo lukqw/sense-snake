@@ -1,10 +1,9 @@
-from sense_hat import SenseHat
 import random
 
 
 class Apple:
-    def __init__(self, field, rgb):
-        self.sense = SenseHat()
+    def __init__(self, field, rgb, sense):
+        self.sense = sense
         self.field = field
         self.rgb = rgb
         self.x = 0
@@ -12,8 +11,8 @@ class Apple:
         self.create()
 
     def create(self):
-        self.x = random.randint(0, self.field-1)
-        self.y = random.randint(0, self.field-1)
+        self.x = random.randint(0, self.field - 1)
+        self.y = random.randint(0, self.field - 1)
         if self.sense.get_pixel(self.x, self.y) != (0, 0, 0):
             self.create()
         self.sense.set_pixel(self.x, self.y, self.rgb)

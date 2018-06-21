@@ -1,11 +1,9 @@
-from sense_hat import SenseHat
 from time import sleep
 
 
 class SensiMate:
-
-    def __init__(self, field):
-        self.sense = SenseHat()
+    def __init__(self, field, sense):
+        self.sense = sense
         self.field = field
 
     def spiral(self, nap, rgb):
