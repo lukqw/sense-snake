@@ -10,6 +10,7 @@ class Game:
         self.sense = SenseHat()
         self.sense.rotation = 180
         self.sense.low_light = True
+	self.sense.clear()
         self.field = 8
         self.snake = Snake(0, 0, 1, self.field, (0, 133, 0), self.sense)
         self.sensimate = SensiMate(self.field, self.sense)
@@ -45,9 +46,9 @@ class Game:
                 self.snake.left()
             elif direction == "right":
                 self.snake.right()
-            events = self.sense.get_events()
-            direction = events[len(events)]
-
+            events = self.sense.stick.get_events()
+	    if(len(events) > 0):
+                direction = events[len(events)-1].direction
 
 game = Game()
 game.start()
