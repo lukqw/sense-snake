@@ -16,7 +16,7 @@ class Game:
         self.field = field
         self.sensimate = SensiMate(self.sense, self.field)
         self.apple = Apple(self.sense, self.field, (200, 0, 0))
-        self.snake = Snake(self.sense, self.field, (0, 133, 0), 0, 0, 1, self.apple)
+        self.snake = Snake(self.sense, self.field, (0, 133, 0), 0, 0, self.apple)
         self.start()
 
     def start(self):
