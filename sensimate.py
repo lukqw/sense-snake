@@ -2,7 +2,7 @@ from time import sleep
 
 
 class SensiMate:
-    def __init__(self, field, sense):
+    def __init__(self, sense, field):
         self.sense = sense
         self.field = field
 

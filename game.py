@@ -1,19 +1,22 @@
 from sense_hat import SenseHat
-from time import sleep
-from snake import Snake
 from sensimate import SensiMate
+from apple import Apple
+from snake import Snake
+
+from time import sleep
 
 
 class Game:
 
-    def __init__(self):
+    def __init__(self, field):
         self.sense = SenseHat()
+        self.sense.clear()
         self.sense.rotation = 180
         self.sense.low_light = True
-        self.sense.clear()
-        self.field = 8
-        self.snake = Snake(0, 0, 1, self.field, (0, 133, 0), self.sense)
-        self.sensimate = SensiMate(self.field, self.sense)
+        self.field = field
+        self.sensimate = SensiMate(self.sense, self.field)
+        self.apple = Apple(self.sense, self.field, (200, 0, 0))
+        self.snake = Snake(self.sense, self.field, (0, 133, 0), 0, 0, 1, self.apple)
         self.start()
 
     def start(self):
@@ -21,7 +24,6 @@ class Game:
         self.game_start()
 
     def animate_start(self):
-        self.sense.clear()
         self.sensimate.spiral(0.01, (148, 0, 211))
         self.sensimate.spiral(0.01, (75, 0, 130))
         self.sensimate.spiral(0.01, (0, 0, 255))
@@ -51,5 +53,4 @@ class Game:
                 direction = events[len(events) - 1].direction
 
 
-game = Game()
-game.start()
+game = Game(8)
