@@ -48,8 +48,8 @@ class Snake:
         elif (x, y) in self.xy:
             self.sense.show_message("You lose!", scroll_speed=0.05)
         else:
-            self.sense.set_pixel(self.xy[0][0], self.xy[0][1], 0, 0, 0)
-            self.xy.remove(self.xy[len(self.xy)-1])
+            self.sense.set_pixel(self.xy[-1][0], self.xy[-1][1], 0, 0, 0)
+            self.xy.remove(self.xy[-1])
         self.xy.insert(0, (x, y))
         self.sense.set_pixel(x, y, self.rgb)
 
