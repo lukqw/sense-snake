@@ -1,10 +1,11 @@
 class Snake:
-    def __init__(self, sense, field, rgb, x, y, apple):
+    def __init__(self, sense, field, rgb, x, y, apple, nap):
         self.sense = sense
         self.field = field
         self.rgb = rgb
         self.xy = [(x, y)]
         self.apple = apple
+	self.nap = nap
 
     def boot(self):
         self.sense.set_pixel(self.xy[0][0], self.xy[0][1], self.rgb)
@@ -45,6 +46,7 @@ class Snake:
     def move(self, x, y):
         if (x, y) == (self.apple.x, self.apple.y):
             self.apple.create()
+	    self.nap *= 0.9
         elif (x, y) in self.xy:
             self.sense.show_message("You lose!", scroll_speed=0.05)
         else:
