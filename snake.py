@@ -51,10 +51,10 @@ class Snake:
         self.sense.set_pixel(self.x, self.y, self.rgb)
 
     def move(self, x, y):
-        if self.sense.get_pixel(x, y) == self.apple.rgb:
+        if (x, y) == (self.apple.x, self.apple.y):
             self.length += 1
-            self.apple.create()
             self.sense.set_pixel(x, y, self.rgb)
+            self.apple.create()
         elif self.sense.get_pixel(x, y) == self.rgb:
             self.sense.show_message("You lose!", scroll_speed=0.05)
         else:
