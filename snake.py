@@ -5,7 +5,7 @@ class Snake:
         self.rgb = rgb
         self.xy = [(x, y)]
         self.apple = apple
-	self.nap = nap
+        self.nap = nap
 
     def boot(self):
         self.sense.set_pixel(self.xy[0][0], self.xy[0][1], self.rgb)
@@ -15,9 +15,9 @@ class Snake:
         x = self.xy[0][0]
         y = self.xy[0][1]
         if y != 0:
-            self.move(x, y-1)
+            self.move(x, y - 1)
         else:
-            self.move(x, self.field-1)
+            self.move(x, self.field - 1)
 
     def down(self):
         x = self.xy[0][0]
@@ -46,7 +46,7 @@ class Snake:
     def move(self, x, y):
         if (x, y) == (self.apple.x, self.apple.y):
             self.apple.create()
-	    self.nap *= 0.9
+            self.nap *= 0.9
         elif (x, y) in self.xy:
             self.sense.show_message("You lose!", scroll_speed=0.05)
         else:
@@ -60,4 +60,3 @@ class Snake:
     def add_head(self, x, y):
         self.xy.insert(0, (x, y))
         self.sense.set_pixel(x, y, self.rgb)
-
