@@ -2,20 +2,19 @@ from time import sleep
 
 
 class SensiMate:
-    def __init__(self, sense, field):
+    def __init__(self, sense):
         self.sense = sense
-        self.field = field
 
     def spiral(self, nap, rgb):
         dx, dy = 1, 0
         x, y = 0, 0
-        array = [[None] * self.field for j in range(self.field)]
-        for i in range(self.field ** 2):
+        array = [[None] * 8 for j in range(8)]
+        for i in range(8 ** 2):
             sleep(nap)
             self.sense.set_pixel(x, y, rgb)
             array[x][y] = i
             nx, ny = x + dx, y + dy
-            if 0 <= nx < self.field and 0 <= ny < self.field and array[nx][ny] == None:
+            if 0 <= nx < 8 and 0 <= ny < 8 and array[nx][ny] == None:
                 x, y = nx, ny
             else:
                 dx, dy = -dy, dx

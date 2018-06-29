@@ -1,9 +1,8 @@
 class Snake:
-    def __init__(self, sense, field, rgb, x, y, apple, nap):
+    def __init__(self, sense, rgb, apple, nap):
         self.sense = sense
-        self.field = field
         self.rgb = rgb
-        self.xy = [(x, y)]
+        self.xy = [(0, 0)]
         self.apple = apple
         self.nap = nap
 
@@ -17,12 +16,12 @@ class Snake:
         if y != 0:
             self.move(x, y - 1)
         else:
-            self.move(x, self.field - 1)
+            self.move(x, 7)
 
     def down(self):
         x = self.xy[0][0]
         y = self.xy[0][1]
-        if y != self.field - 1:
+        if y != 7:
             self.move(x, y + 1)
         else:
             self.move(x, 0)
@@ -33,12 +32,12 @@ class Snake:
         if x != 0:
             self.move(x - 1, y)
         else:
-            self.move(self.field - 1, y)
+            self.move(7, y)
 
     def right(self):
         x = self.xy[0][0]
         y = self.xy[0][1]
-        if x != self.field - 1:
+        if x != 7:
             self.move(x + 1, y)
         else:
             self.move(0, y)
@@ -48,7 +47,7 @@ class Snake:
             self.apple.create()
             self.nap *= 0.9
         elif (x, y) in self.xy:
-            self.sense.show_message("You lose!", scroll_speed=0.05)
+            self.nap = -1
         else:
             self.remove_last()
         self.add_head(x, y)
