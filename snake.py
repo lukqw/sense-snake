@@ -45,7 +45,7 @@ class Snake:
     def move(self, x, y):
         if (x, y) == (self.apple.x, self.apple.y):
             self.apple.create()
-            self.nap *= 0.9
+            self.nap *= 0.95
         elif (x, y) in self.xy:
             self.nap = -1
         else:
