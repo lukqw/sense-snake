@@ -58,6 +58,7 @@ class Game:
             else:
                 self.sense.show_message("You lose!", scroll_speed=0.05)
                 self.sense.show_message("Score: %d" % len(self.snake.xy), scroll_speed=0.05)
-		quit()
+                quit()
+
 
 game = Game()
