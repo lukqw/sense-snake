@@ -11,7 +11,7 @@ class Game:
     def __init__(self, field):
         self.sense = SenseHat()
         self.sense.clear()
-        self.sense.rotation = 180
+        #self.sense.rotation = 180
         self.sense.low_light = True
         self.field = field
         self.sensimate = SensiMate(self.sense, self.field)
@@ -40,7 +40,15 @@ class Game:
         direction = "right"
         while True:
             sleep(self.snake.nap)
-            if direction == "up":
+            events = self.sense.stick.get_events()
+            if len(events) > 0:
+                newdirection = events[len(events) - 1].direction
+		if not ((direction == "up" and newdirection == "down") 
+		     or (direction == "down" and newdirection == "up") 
+		     or (direction == "left" and newdirection == "right") 
+		     or (direction == "right" and newdirection == "left")):
+			direction = newdirection
+	    if direction == "up":
                 self.snake.up()
             elif direction == "down":
                 self.snake.down()
@@ -48,9 +56,6 @@ class Game:
                 self.snake.left()
             elif direction == "right":
                 self.snake.right()
-            events = self.sense.stick.get_events()
-            if len(events) > 0:
-                direction = events[len(events) - 1].direction
 
 
 game = Game(8)
